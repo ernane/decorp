@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: vagrant
+  password: vagrant
+  host: 192.168.33.12
+  port: 5432
+  pool: 5
+
+development:
+  <<: *default
+  database: devcorp_development
+
+test:
+  <<: *default
+  database: devcorp_test
+
+production:
+  <<: *default
+  database: devcorp_production
