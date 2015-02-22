@@ -26,5 +26,6 @@ group :development do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-rbenv'
   gem 'capistrano-unicorn-nginx', '~> 3.2.0'
+  gem 'annotate', '~> 2.6.5'
 end
 
