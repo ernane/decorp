@@ -1,14 +1,15 @@
 class Correlative
   class << self
-    attr_reader :application, :operation
+    attr_reader :application, :operation, :year
 
-    def tab_param(application, operation)
+    def tab_param(application, operation, year)
       @application = application
-      @operation = operation
+      @operation   = operation
+      @year        = year
     end
 
-    def number(app, oper)
-      tab_param(app, oper)
+    def number(app, oper, year)
+      tab_param(app, oper, year)
       @number = correlative
     end
 
@@ -19,7 +20,7 @@ class Correlative
         if length(transaction) > sequence_size
           raise Exception.new("Tamanho de Sequencial Maior que #{sequence_size}")
         else
-          @correlative = "#{application_formatted}#{year}#{operation_formatted}#{sequence_formatted}"
+          @correlative = "#{application_formatted}#{@year}#{operation_formatted}#{sequence_formatted}"
         end
       rescue => exception
         puts "Error ao executar 'correlative' (#{exception.class}), tente novament."
@@ -29,7 +30,7 @@ class Correlative
     def transaction
       if record.nil?
         @sequence = 1
-        TabParam.create!(application: @application, year: year, operation: @operation, number: @sequence)
+        TabParam.create!(application: @application, year: @year, operation: @operation, number: @sequence)
       else
         @sequence = record.number + 1
         record.update_attribute(:number, @sequence)
@@ -38,11 +39,7 @@ class Correlative
     end
 
     def record
-      @record = TabParam.where("application = ? AND year = ? AND operation = ? ", @application, year, @operation).first
-    end
-
-    def year
-      @year = Time.new.year
+      @record = TabParam.where("application = ? AND year = ? AND operation = ? ", @application, @year, @operation).first
     end
 
     def sequence_size

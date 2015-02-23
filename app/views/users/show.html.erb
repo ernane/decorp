@@ -1,0 +1,24 @@
+<h1>Show Page <%= @user.first_name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number Invoice</th>
+      <th>Reference</th>
+      <th>Issue Date</th>
+      <th>Due Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.number %></td>
+        <td><%= invoice.reference %></td>
+        <td><%= invoice.issue_date %></td>
+        <td><%= invoice.due_date %></td>
+        <td><%= invoice.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

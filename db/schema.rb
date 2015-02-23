@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222212547) do
+ActiveRecord::Schema.define(version: 20150223222045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "invoices", id: false, force: :cascade do |t|
+    t.string   "number",     limit: 15,             null: false
+    t.string   "reference",  limit: 6,              null: false
+    t.date     "due_date",                          null: false
+    t.date     "issue_date",                        null: false
+    t.integer  "user_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "status",     limit: 2,  default: 0
+  end
+
+  add_index "invoices", ["number"], name: "index_invoices_on_number", unique: true, using: :btree
+  add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
 
   create_table "tab_params", force: :cascade do |t|
     t.integer  "application", limit: 2, null: false
@@ -26,13 +40,15 @@ ActiveRecord::Schema.define(version: 20150222212547) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",    limit: 50, null: false
-    t.string   "last_name",     limit: 50, null: false
-    t.string   "email_address", limit: 80, null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "first_name",     limit: 50,             null: false
+    t.string   "last_name",      limit: 50,             null: false
+    t.string   "email_address",  limit: 80,             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "invoices_count",            default: 0
   end
 
   add_index "users", ["email_address"], name: "index_users_on_email_address", unique: true, using: :btree
 
+  add_foreign_key "invoices", "users"
 end
