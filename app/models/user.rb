@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id             :integer          not null, primary key
+#  first_name     :string(50)       not null
+#  last_name      :string(50)       not null
+#  email_address  :string(80)       not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  invoices_count :integer          default("0")
+#
+
 class User < ActiveRecord::Base
   has_many :invoices, dependent: :destroy
 
