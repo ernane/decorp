@@ -16,6 +16,10 @@ class Invoice < ActiveRecord::Base
   self.primary_key = 'number'
 
   belongs_to :user, counter_cache: true
+  has_many :items
   enum status: { open: 0, paid: 1, suspended: 2 }
+
+  validates :number, :reference, :due_date, :issue_date, :user_id, presence: true
+  validates :number, uniqueness: true, length: { maximum: 15 }
 
 end
