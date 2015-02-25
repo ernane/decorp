@@ -16,3 +16,12 @@
     <% end %>
   </tbody>
 </table>
+
+
+
+<h2>Import Items</h2>
+<%= form_tag import_user_invoices_path(@user, number: @invoice.number), multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
