@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       post :import, param: :number, on: :collection
     end
   end
+
+  resources :items
 end

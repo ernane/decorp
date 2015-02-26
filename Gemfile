@@ -18,6 +18,10 @@ group :development, :test do
 end
 
 gem 'unicorn',  group: :production
+gem 'bootstrap-sass'
+gem 'jquery-datatables-rails', '~> 3.1.1'
+gem 'ajax-datatables-rails'
+gem 'kaminari'
 
 group :development do
   gem 'thin'
