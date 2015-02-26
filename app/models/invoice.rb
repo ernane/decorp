@@ -22,4 +22,8 @@ class Invoice < ActiveRecord::Base
   validates :number, :reference, :due_date, :issue_date, :user_id, presence: true
   validates :number, uniqueness: true, length: { maximum: 15 }
 
+  def total
+    self.items.each.inject(0) { |sum, i| sum += i.value }
+  end
+
 end

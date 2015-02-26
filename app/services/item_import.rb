@@ -11,7 +11,7 @@ class ItemImport
         if item.nil?
           Item.create(description: item_hash["description"], value: item_hash["value"], invoice_id: invoice)
         else
-          Item.update_attributes(description: item_hash["description"], value: item_hash["value"])
+          item.update(description: item_hash["description"], value: item_hash["value"])
         end
       end
     end
