@@ -15,9 +15,3 @@ end
   correlative = Correlative.number(1,1,Time.new.year)
   Invoice.create(number: correlative, reference: y, user: rr, issue_date: Time.new, due_date: Time.new)
 end
-
-
-Item.create(description: "Item 1", value: 100.12, invoice: Invoice.first)
-Item.create(description: "Item 2", value: 192.13, invoice: Invoice.first)
-Item.create(description: "Item 3", value: 599.42, invoice: Invoice.first)
-Item.create(description: "Item 4", value: 399.19, invoice: Invoice.first)

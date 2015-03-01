@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie ie9" lang="<%= I18n.locale %>" class="no-js"> <![endif]-->
+<!--[if !(IE)]><!-->
+<html lang="<%= I18n.locale %>" class="no-js">
+<!--<![endif]-->
+
+<head>
+  <title>Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="">
+  <meta name="author" content="Ernane Sena">
+
+  <%= stylesheet_link_tag 'dashboard', media: 'screen', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'bootstrap.min', media: 'screen', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'font-awesome.min', media: 'screen', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'main', media: 'screen', 'data-turbolinks-track' => true %>
+
+  <!--[if lte IE 9]>
+      <%= stylesheet_link_tag 'main-ie', media: 'screen' %>
+      <%= stylesheet_link_tag 'main-ie-part2', media: 'screen' %>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <%= favicon_link_tag 'ico/favicon144x144.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '144x144' %>
+  <%= favicon_link_tag 'ico/favicon144x144.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '114x114' %>
+  <%= favicon_link_tag 'ico/favicon144x144.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '72x72' %>
+  <%= favicon_link_tag 'ico/favicon144x144.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '57x57' %>
+  <%= favicon_link_tag 'ico/favicon.png', rel: 'shortcut icon' %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body class="dashboard">
+  <div class="wrapper"><!-- wrapper -->
+    <%= render("shared/topbar") %>
+    <div class="bottom"><!-- BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+      <div class="container">
+        <div class="row">
+          <%= render("shared/sidebar") %>
+          <%= render("shared/alert") %>
+          <%= yield %>
+        </div><!-- /row -->
+      </div><!-- /container -->
+    </div><!-- END BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+    <div class="push-sticky-footer"></div>
+  </div><!-- /wrapper -->
+
+  <!-- footer -->
+  <%= render("shared/footer") %>
+  <!-- /footer -->
+
+  <!-- Javascript -->
+  <%= javascript_include_tag 'dashboard', 'data-turbolinks-track' => true %>
+  <!-- Javascript -->
+</body>
+</html>
